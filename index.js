@@ -59,7 +59,7 @@ async function main() {
 
         stream.on("data", (data) => {
           const { block: rawBlock } = data
-          if (rawBlock.type_url !== "type.googleapis.com/dfuse.ethereum.codec.v1.Block") {
+          if (rawBlock.type_url !== "type.googleapis.com/sf.ethereum.codec.v1.Block") {
             rejectStream(stream, reject, invalidTypeError(rawBlock.type_url))
             return
           }
