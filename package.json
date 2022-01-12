@@ -10,6 +10,7 @@
     "@grpc/proto-loader": "^0.6.1",
     "@types/long": "^4.0.1",
     "@types/node": "^13.13.51",
+    "dotenv": "^11.0.0",
     "grpc": "^1.24.7",
     "node-fetch": "^2.6.1",
     "pg": "^8.7.1",
@@ -24,6 +25,6 @@
   "scripts": {
     "build-ts": "tsc",
     "build": "npm run build-ts",
-    "start": "npm run build && node dist/index.js api.streamingfast.io:443 web_e3dd40a998921aea0c8cd273f91d4adb --full"
+    "start": "npm run build && node dist/index.js"
   }
 }

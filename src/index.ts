@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const path = require("path")
 const grpc = require("grpc")
 const protoLoader = require("@grpc/proto-loader")
@@ -25,23 +27,16 @@ const blockDetailsLight = blockDetailsEnum.values["BLOCK_DETAILS_LIGHT"]
 const blockDetailsFull = blockDetailsEnum.values["BLOCK_DETAILS_FULL"]
 
 async function main() {
-  if (process.argv.length <= 3) {
-    console.error("Error: Wrong number of arguments")
-    console.error()
-    console.error("usage: node index.js <endpoint> <apiKey> [--full]")
-    process.exit(1)
-  }
-
-  const endpoint = process.argv[2]
-  const apiKey = process.argv[3]
-
   const dfuse = createDfuseClient({
-    apiKey,
-    network: endpoint.replace(/:[0-9]+$/, ""),
+    apiKey: process.env.API_KEY,
+    network: process.env.API_ENDPOINT.replace(/:[0-9]+$/, ""),
   })
 
-  const client = new bstreamService.BlockStreamV2(endpoint, grpc.credentials.createSsl())
-  const showFull = process.argv.length > 4 && process.argv[4] == "--full"
+  const client = new bstreamService.BlockStreamV2(
+    process.env.API_ENDPOINT,
+    grpc.credentials.createSsl()
+  )
+  const showFull = true
 
   const transfer = keccak256(toUtf8Bytes("Transfer(address,address,uint256)")).substring(2)
   const transferSingle = keccak256(
