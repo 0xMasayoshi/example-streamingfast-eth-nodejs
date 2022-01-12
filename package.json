@@ -5,13 +5,25 @@
   "license": "Apache 2.0",
   "dependencies": {
     "@dfuse/client": "^0.3.20",
+    "@ethersproject/keccak256": "^5.5.0",
+    "@ethersproject/strings": "^5.5.0",
     "@grpc/proto-loader": "^0.6.1",
+    "@types/long": "^4.0.1",
+    "@types/node": "^13.13.51",
     "grpc": "^1.24.7",
     "node-fetch": "^2.6.1",
+    "pg": "^8.7.1",
     "protobufjs": "^6.10.2",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.41",
     "ws": "^7.4.5"
   },
   "devDependencies": {
     "prettier": "^2.2.1"
+  },
+  "scripts": {
+    "build-ts": "tsc",
+    "build": "npm run build-ts",
+    "start": "npm run build && node dist/index.js api.streamingfast.io:443 web_e3dd40a998921aea0c8cd273f91d4adb --full"
   }
 }
